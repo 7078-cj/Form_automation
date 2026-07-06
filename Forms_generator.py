@@ -10,7 +10,8 @@ from utils.compliance_form_libs import (
     fill_itinerary_table,
     fill_risk_assessment_table,
     generate_itinerary,
-    generate_risk_assessment
+    generate_risk_assessment,
+    generate_executive_summary
 )
 
 # ============================================
@@ -44,9 +45,11 @@ participants = compliance["participants"]
 
 itinerary_response = generate_itinerary(competition)
 risk_response = generate_risk_assessment(competition)
+executive_summary_response = generate_executive_summary(competition)
 
 itinerary = itinerary_response["result"]["itinerary"]
 risks = risk_response["result"]["risks"]
+executive_summary = executive_summary_response["result"]["executive_summary"]
 
 # ============================================
 # Open Template
@@ -66,11 +69,10 @@ replace_text(
             competition["start_date"],
             competition["end_date"]
         ),
-
-        # Optional placeholders if your template contains them
         "venue": competition["venue"],
         "course_subject": "BS Information System",
-        "faculty_in_charge": "Sir Gian Carlo Gallon"
+        "faculty_in_charge": "Sir Gian Carlo Gallon",
+        "executive_summary": executive_summary
     }
 )
 

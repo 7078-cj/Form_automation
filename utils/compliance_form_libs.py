@@ -204,5 +204,49 @@ def fill_risk_assessment_table(doc: Document, risks):
         table.cell(i, 2).text = risk.get("preventative_protocol", "")
         table.cell(i, 3).text = risk.get("contingency_strategy", "")
 
+def generate_executive_summary(details):
+    """
+    Generates an executive summary and operational justification
+    for the compliance form.
+    """
 
+    prompt = f"""
+You are preparing an Executive Summary and Operational Justification
+for an academic off-campus activity request.
+
+Competition Information
+
+Title:
+{details['title']}
+
+Description:
+{details['description']}
+
+Venue:
+{details['venue']}
+
+Duration:
+{format_period(details['start_date'], details['end_date'])}
+
+Return ONLY valid JSON.
+
+Schema:
+
+{{
+    "executive_summary":"..."
+}}
+
+Rules:
+
+- Write 2-3 professional paragraphs.
+- Explain the purpose of the activity.
+- Explain the educational value and expected learning outcomes.
+- Explain why participation is important for BS Information System students.
+- Mention the itinerary's role in achieving the objectives.
+- Mention that proper supervision and risk mitigation measures will be implemented.
+- Do NOT use bullet points.
+- Return JSON only.
+"""
+
+    return generate(prompt)
 
