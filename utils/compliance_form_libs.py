@@ -238,7 +238,7 @@ Schema:
 
 Rules:
 
-- Write 2-3 professional paragraphs.
+- Write 1 professional paragraph.
 - Explain the purpose of the activity.
 - Explain the educational value and expected learning outcomes.
 - Explain why participation is important for BS Information System students.
