@@ -6,12 +6,14 @@ from docx import Document
 from utils.insert import replace_text
 from utils.lib import format_period
 from utils.compliance_form_libs import (
+    fill_medical_information_table,
     fill_participants_table,
     fill_itinerary_table,
     fill_risk_assessment_table,
     generate_itinerary,
     generate_risk_assessment,
-    generate_executive_summary
+    generate_executive_summary,
+    fill_students_table,
 )
 
 # ============================================
@@ -81,6 +83,8 @@ replace_text(
 # ============================================
 
 fill_participants_table(doc, participants)
+fill_students_table(doc, participants)
+fill_medical_information_table(doc, participants)
 
 fill_itinerary_table(
     doc,
@@ -91,6 +95,7 @@ fill_risk_assessment_table(
     doc,
     risks
 )
+
 
 # ============================================
 # Save

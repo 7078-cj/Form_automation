@@ -250,3 +250,47 @@ Rules:
 
     return generate(prompt)
 
+
+def fill_students_table(doc: Document, participants):
+    table = find_table_by_headers(
+        doc,
+        [
+            "Student Name",
+            "Time-In Signature (Departure)",
+            "Time-Out Signature (Return)"
+        ]
+    )
+
+    # Add rows if there aren't enough
+    while len(table.rows) - 1 < len(participants):
+        table.add_row()
+
+    # Fill only the Student Name column
+    for i, participant in enumerate(participants, start=1):
+        table.cell(i, 0).text = participant.get("Student_Full_Name", "")
+        # Leave signature columns blank
+        table.cell(i, 1).text = ""
+        table.cell(i, 2).text = ""
+
+def fill_medical_information_table(doc: Document, participants):
+    table = find_table_by_headers(
+        doc,
+        [
+            "Student Name",
+            "Blood Type",
+            "Known Medical Allergies",
+            "Chronic Conditions / Maintenance Meds"
+        ]
+    )
+
+    # Add rows if there aren't enough
+    while len(table.rows) - 1 < len(participants):
+        table.add_row()
+
+    # Fill only the Student Name column
+    for i, participant in enumerate(participants, start=1):
+        table.cell(i, 0).text = participant.get("Student_Full_Name", "")
+        table.cell(i, 1).text = ""
+        table.cell(i, 2).text = ""
+        table.cell(i, 3).text = ""
+
